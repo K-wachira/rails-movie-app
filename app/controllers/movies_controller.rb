@@ -64,4 +64,45 @@ class MoviesController < ApplicationController
       redirect_to sign_in_path, notice: "You have to be logged in to view the page"
     end
   end
+
+  # Favorite Methods -----------------------------------------
+  def favorite
+    search
+    if session[:user_id]
+      @favorite_movies = Movie.where(user_id: Current.user.id, liked: true)
+    else
+      redirect_to sign_in_path, notice: "You have to be logged in to view the page"
+    end
+  end
+
+  def add_favorite_movie
+      if find_by_imdbID(movie_params[:imdbID]) == nil
+          favorite_movie = Movie.new(movie_params.merge!(liked: true, to_watch: false))
+          if favorite_movie.save
+              redirect_to favorite_path, notice: "Successfully liked movie"
+          else
+              redirect_to root_path, alert: " Not okay"
+          end
+      else
+        favorite_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+        if favorite_movie.update(liked: true, to_watch: false)
+          redirect_to favorite_path, notice: "Successfully liked movie"
+        else
+          redirect_to root_path, alert: " Not okay"
+        end
+      end
+  end
+  
+  def remove_favorite_movie
+      if find_by_imdbID(movie_params[:imdbID]) == nil
+         redirect_to root_path, alert: " Not okay"
+      else
+        favorite_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+        if favorite_movie.update(liked: false)
+          redirect_to favorite_path, notice: "Successfully unliked movie"
+        else
+          redirect_to root_path, alert: " Not okay"
+        end
+      end
+  end
 end
