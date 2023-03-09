@@ -105,4 +105,45 @@ class MoviesController < ApplicationController
         end
       end
   end
+
+  # Watch list movie Methods -------------------------------
+  def add_watch_movie
+      if find_by_imdbID(movie_params[:imdbID]) == nil
+        watch_list_movie = Movie.new(movie_params.merge!(to_watch: true))
+        if watch_list_movie.save
+            redirect_to to_watch_path, notice: "Successfully added movie to watch list"
+        else
+            redirect_to root_path, alert: " Not okay"
+        end
+      else
+        watch_list_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+        if watch_list_movie.update(to_watch: true)
+          redirect_to to_watch_path, notice: "Successfully added movie to watch list"
+        else
+          redirect_to root_path, alert: " Not okay"
+        end
+      end
+  end
+
+  def remove_watch_movie
+      if find_by_imdbID(movie_params[:imdbID]) == nil
+         redirect_to root_path, alert: " Not okay"
+      else
+        watch_list_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+        if watch_list_movie.update(to_watch: false)
+          redirect_to to_watch_path, notice: "Successfully removed movie to watch list"
+        else
+          redirect_to root_path, alert: " Not okay"
+        end
+      end
+  end
+
+  def watch_list
+    search
+    if session[:user_id]
+      @watch_list_movies = Movie.where(user_id: Current.user.id, to_watch: true)
+    else
+      redirect_to sign_in_path, notice: 'You have to be logged in to view the page'
+    end
+  end
 end
