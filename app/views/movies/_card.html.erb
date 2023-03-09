@@ -1,0 +1,87 @@
+<% if movies.respond_to? :each_slice %>
+  <% movies.each_slice(4) do | four_movies | %>
+    <div class="row">
+      <% four_movies.each do |movie| %>
+        <div class="col-lg-3">
+          <%= link_to show_movie_path(movie) do %>
+            <div class="card mb-5">
+              <div style="max-height: 300px; overflow: hidden;">
+                <img src=<%= movie["poster"] %>  alt="No poster found." class="card-img-top">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title text-decoration-none link-dark"><%= movie["title"].truncate(30) %></h5>
+                <span class="badge bg-info text-dark"> <%= movie["category"] %> </span>
+                <span class="badge bg-secondary"> <%= movie["rating"] %></span>
+              </div>
+              <div class="card-footer">
+                <div class="d-flex justify-content-around">
+                  <div class="mb-3">
+                    <% if movie["to_watch"] %>
+                      <%= form_with model: @watch_list_movies, url: remove_to_watch_path do |form| %>
+                        <%= hidden_field :movie, movie.to_json  %>
+                        <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                        <%= octicon "bookmark-fill", :height => 16,  :class => "right left", :"aria-label" => "unlike" %>
+                          <span>Remove </span>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <%= form_with model: @watch_list_movies, url: add_to_watch_path do |form| %>
+                        <%= hidden_field :movie, movie.to_json  %>
+                        <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                        <%= octicon "bookmark", :height => 16,  :class => "right left", :"aria-label" => "like" %>
+                            <span>WatchList</span>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="mb-3">
+                    <% if movie["watched"] %>
+                      <%= form_with model: @watched_list_movies, url: remove_watched_path do |form| %>
+                        <%= hidden_field :movie, movie.to_json  %>
+                        <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                        <%= octicon "eye", :height => 16,  :class => "right left", :"aria-label" => "unlike" %>
+                          <span> Not Seen</span>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <%= form_with model: @watched_list_movies, url: add_watched_path do |form| %>
+                        <%= hidden_field :movie, movie.to_json  %>
+                        <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                        <%= octicon "eye-closed", :height => 16,  :class => "right left", :"aria-label" => "like" %>
+                          <span>Seen</span>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="mb-3">
+                    <% if movie["liked"] %>
+                      <%= form_with model: @favorite_movies, url: remove_favorite_path do |form| %>
+                        <%= hidden_field :movie, movie.to_json  %>
+                        <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                        <%= octicon "heart-fill", :height => 16,  :class => "right left", :"aria-label" => "unlike" %>
+                          <span>Unlike</span>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <%= form_with model: @favorite_movies, url: add_favorite_path do |form| %>
+                        <%= hidden_field :movie, movie.to_json  %>
+                        <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                        <%= octicon "heart", :height => 16,  :class => "right left", :"aria-label" => "like" %>
+                          <span>Like</span>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>    
+    </div>
+  <% end %>
+<% else %>
+  <div>
+    <p> NO results </p>
+  </div>
+<% end %>
