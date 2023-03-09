@@ -146,4 +146,29 @@ class MoviesController < ApplicationController
       redirect_to sign_in_path, notice: 'You have to be logged in to view the page'
     end
   end
+
+  private
+
+  def search
+    if params[:search]
+       redirect_to url_for(:controller => :searchs, :action => :search, :search => params[:search])
+    end
+  end
+
+  def find_by_imdbID(imdbID)
+    return Movie.find_by(imdbID: imdbID)
+  end
+
+  def movie_params
+    @params = params.as_json['movie'].as_json.keys[0].dup
+    if @params.include? '=>'
+      @params.gsub! '=>', ':'
+    end
+    obj = ActiveSupport::JSON.decode(@params)
+    { imdbID: obj['imdbID'],
+      user_id: Current.user.id,
+      poster: obj['Poster'] || obj['poster'],
+      title: obj['Title'] || obj['title'],
+      category: obj['Type'] || obj['type'] }
+  end
 end
