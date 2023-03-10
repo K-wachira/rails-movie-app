@@ -31,15 +31,14 @@ To run the application you need
 
 * Ruby version 3.2.1
 
-* Docker 
+* Docker and Docker-Compose
 
-* Configuration
-
-* Database - sqlite  used
+* Database - postgresql used (relational database due to the transactional nature of the records)
 
 --- 
 
 Deployment instructions
+
 To run the application you have need docker installed and running. 
 navigate to the route folder of the applicationa and run the following command
 
