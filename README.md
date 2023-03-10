@@ -40,7 +40,7 @@ To run the application you need
 --- 
 
 Deployment instructions
+To run the application you have need docker installed and running. 
+navigate to the route folder of the applicationa and run the following command
 
-docker build --tag moviereview .
-
-docker run -p 3000:3000 moviereview
+`docker-compose build && docker-compose up`
