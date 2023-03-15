@@ -6,12 +6,11 @@
           <%= link_to show_movie_path(movie) do %>
             <div class="card mb-5">
               <div style="max-height: 300px; overflow: hidden;">
-                <img src=<%= movie["poster"] %>  alt="No poster found." class="card-img-top">
+                <img src=<%= movie["poster"] %>  alt=<%= movie["title"] %> class="card-img-top">
               </div>
               <div class="card-body">
-                <h5 class="card-title text-decoration-none link-dark"><%= movie["title"].truncate(30) %></h5>
+                <p class="card-title text-decoration-none link-dark"><%= movie["title"].truncate(30) %></p>
                 <span class="badge bg-info text-dark"> <%= movie["category"] %> </span>
-                <span class="badge bg-secondary"> <%= movie["rating"] %></span>
               </div>
               <div class="card-footer">
                 <div class="d-flex justify-content-around">

@@ -1,48 +1,54 @@
-<% movies.each_slice(4) do | four_movies| %>
-  <div class="row">
-    <% four_movies.each do | m | %>
-      <div class="col-lg-3">
-        <div class="card mb-5">
-          <div style="max-height: 300px; overflow: hidden;">
-            <img src=<%= m["Poster"] %>  alt="No poster found." class="card-img-top">
-          </div>
-          <div class="card-body">
-              <h5 class="card-title"><%= m["Title"].truncate(30) %></h5>
-              <p class="card-text"><%=  m["Plot"] %></p>
-          </div>
-          <div class="card-footer">
-              <div class="d-flex justify-content-around">
-                <div class="mb-3">
-                  <%= form_with model: @watch_list_movies, url: add_to_watch_path do |form| %>
-                    <%= hidden_field :movie, m %>
-                    <%= button_tag(type: 'submit', class: "icons border-0") do %>
-                    <%= octicon "bookmark", :height => 16,  :class => "right left", :"aria-label" => "like" %>
-                      <span>WatchList</span>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="mb-3">
-                  <%= form_with model: @watched_list_movies, url: add_watched_path do |form| %>
-                    <%= button_tag(type: 'submit', class: "icons border-0") do %>
-                    <%= hidden_field :movie, m %>
-                    <%= octicon "eye", :height => 16,  :class => "right left", :"aria-label" => "like" %>
-                      <span>Seen</span>
-                    <% end %>
-                  <% end %>
-                </div>
-                <div class="mb-3">
-                  <%= form_with model: @favorite_movies, url: add_favorite_path do |form| %>
-                    <%= hidden_field :movie, m %>
-                    <%= button_tag(type: 'submit', class: "icons border-0") do %>
-                    <%= octicon "heart", :height => 16,  :class => "right left", :"aria-label" => "like" %>
-                      <span>Like</span>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
+<% if movies.respond_to? :each_slice %>
+  <% movies.each_slice(4) do | four_movies| %>
+    <div class="row">
+      <% four_movies.each do | m | %>
+        <div class="col-lg-3">
+          <div class="card mb-5">
+            <div style="max-height: 300px; overflow: hidden;">
+              <img src=<%= m["Poster"] %>  alt=<%= m["Title"]%> class="card-img-top">
             </div>
+            <div class="card-body">
+              <p class="card-title"><%= m["Title"].truncate(20) %></p>
+              <p class="card-text"><%=  m["Plot"] %></p>
+            </div>
+            <div class="card-footer">
+               <div class="d-flex justify-content-around">
+                 <div class="mb-3">
+                   <%= form_with model: @watch_list_movies, url: add_to_watch_path do |form| %>
+                     <%= hidden_field :movie, m %>
+                     <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                     <%= octicon "bookmark", :height => 16,  :class => "right left", :"aria-label" => "like" %>
+                       <span>WatchList</span>
+                     <% end %>
+                   <% end %>
+                 </div>
+                 <div class="mb-3">
+                   <%= form_with model: @watched_list_movies, url: add_watched_path do |form| %>
+                     <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                     <%= hidden_field :movie, m %>
+                     <%= octicon "eye", :height => 16,  :class => "right left", :"aria-label" => "like" %>
+                       <span>Seen</span>
+                     <% end %>
+                   <% end %>
+                 </div>
+                 <div class="mb-3">
+                   <%= form_with model: @favorite_movies, url: add_favorite_path do |form| %>
+                     <%= hidden_field :movie, m %>
+                     <%= button_tag(type: 'submit', class: "icons border-0") do %>
+                     <%= octicon "heart", :height => 16,  :class => "right left", :"aria-label" => "like" %>
+                       <span>Like</span>
+                     <% end %>
+                   <% end %>
+                 </div>
+               </div>
+            </div>
+          </div>
         </div>
-      </div>
-    <% end %> 
+      <% end %> 
+    </div>
+  <% end %>
+<% else %>
+  <div>
+    <p> No results, please try another search term </p>
   </div>
 <% end %>
