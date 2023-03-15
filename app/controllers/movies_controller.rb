@@ -14,34 +14,34 @@ class MoviesController < ApplicationController
   end
 
   def add_watched_movie
-      if find_by_imdbID(movie_params[:imdbID]) == nil
-        watched_movie = Movie.new(movie_params.merge!(watched: true))
-        if watched_movie.save
-            redirect_to watched_path, notice: "Successfully added movie to watched"
-        else
-            redirect_to root_path, alert: " Not okay"
-        end
-      else
-        watched_movie= Movie.find_by(imdbID: movie_params[:imdbID])
-        if watched_movie.update(watched: true)
-          redirect_to watched_path, notice: "Successfully added movie to watched"
-        else
-          redirect_to root_path, alert: " Not okay"
-        end
-      end
+     if find_by_imdbID(movie_params[:imdbID]) == nil
+       watched_movie = Movie.new(movie_params.merge!(watched: true))
+       if watched_movie.save
+           redirect_to watched_path, notice: "Successfully added movie to watched"
+       else
+           redirect_to root_path, alert: " Not okay"
+       end
+     else
+       watched_movie= Movie.find_by(imdbID: movie_params[:imdbID])
+       if watched_movie.update(watched: true)
+         redirect_to watched_path, notice: "Successfully added movie to watched"
+       else
+         redirect_to root_path, alert: " Not okay"
+       end
+     end
   end
 
   def remove_watched_movie
-      if find_by_imdbID(movie_params[:imdbID]) == nil
-         redirect_to root_path, alert: " Not okay"
-      else
-        watched_movie= Movie.find_by(imdbID: movie_params[:imdbID])
-        if watched_movie.update(watched: false)
-          redirect_to watched_path, notice: "Successfully removed movie to watched"
-        else
-          redirect_to watched_path, alert: " Not okay"
-        end
-      end
+     if find_by_imdbID(movie_params[:imdbID]) == nil
+        redirect_to root_path, alert: " Not okay"
+     else
+       watched_movie= Movie.find_by(imdbID: movie_params[:imdbID])
+       if watched_movie.update(watched: false)
+         redirect_to watched_path, notice: "Successfully removed movie to watched"
+       else
+         redirect_to watched_path, alert: " Not okay"
+       end
+     end
   end
 
   def watched
@@ -64,66 +64,66 @@ class MoviesController < ApplicationController
   end
 
   def add_favorite_movie
-      if find_by_imdbID(movie_params[:imdbID]) == nil
-          favorite_movie = Movie.new(movie_params.merge!(liked: true, to_watch: false))
-          if favorite_movie.save
-              redirect_to favorite_path, notice: "Successfully liked movie"
-          else
-              redirect_to root_path, alert: " Not okay"
-          end
-      else
-        favorite_movie = Movie.find_by(imdbID: movie_params[:imdbID])
-        if favorite_movie.update(liked: true, to_watch: false)
-          redirect_to favorite_path, notice: "Successfully liked movie"
-        else
-          redirect_to root_path, alert: " Not okay"
-        end
-      end
+     if find_by_imdbID(movie_params[:imdbID]) == nil
+         favorite_movie = Movie.new(movie_params.merge!(liked: true, to_watch: false))
+         if favorite_movie.save
+             redirect_to favorite_path, notice: "Successfully liked movie"
+         else
+             redirect_to root_path, alert: " Not okay"
+         end
+     else
+       favorite_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+       if favorite_movie.update(liked: true, to_watch: false)
+         redirect_to favorite_path, notice: "Successfully liked movie"
+       else
+         redirect_to root_path, alert: " Not okay"
+       end
+     end
   end
   
   def remove_favorite_movie
-      if find_by_imdbID(movie_params[:imdbID]) == nil
+     if find_by_imdbID(movie_params[:imdbID]) == nil
+        redirect_to root_path, alert: " Not okay"
+     else
+       favorite_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+       if favorite_movie.update(liked: false)
+         redirect_to favorite_path, notice: "Successfully unliked movie"
+       else
          redirect_to root_path, alert: " Not okay"
-      else
-        favorite_movie = Movie.find_by(imdbID: movie_params[:imdbID])
-        if favorite_movie.update(liked: false)
-          redirect_to favorite_path, notice: "Successfully unliked movie"
-        else
-          redirect_to root_path, alert: " Not okay"
-        end
-      end
+       end
+     end
   end
 
   # Watch list movie Methods -------------------------------
   def add_watch_movie
-      if find_by_imdbID(movie_params[:imdbID]) == nil
-        watch_list_movie = Movie.new(movie_params.merge!(to_watch: true))
-        if watch_list_movie.save
-            redirect_to to_watch_path, notice: "Successfully added movie to watch list"
-        else
-            redirect_to root_path, alert: " Not okay"
-        end
-      else
-        watch_list_movie = Movie.find_by(imdbID: movie_params[:imdbID])
-        if watch_list_movie.update(to_watch: true)
-          redirect_to to_watch_path, notice: "Successfully added movie to watch list"
-        else
-          redirect_to root_path, alert: " Not okay"
-        end
-      end
+     if find_by_imdbID(movie_params[:imdbID]) == nil
+       watch_list_movie = Movie.new(movie_params.merge!(to_watch: true))
+       if watch_list_movie.save
+           redirect_to to_watch_path, notice: "Successfully added movie to watch list"
+       else
+           redirect_to root_path, alert: " Not okay"
+       end
+     else
+       watch_list_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+       if watch_list_movie.update(to_watch: true)
+         redirect_to to_watch_path, notice: "Successfully added movie to watch list"
+       else
+         redirect_to root_path, alert: " Not okay"
+       end
+     end
   end
 
   def remove_watch_movie
-      if find_by_imdbID(movie_params[:imdbID]) == nil
+     if find_by_imdbID(movie_params[:imdbID]) == nil
+        redirect_to root_path, alert: " Not okay"
+     else
+       watch_list_movie = Movie.find_by(imdbID: movie_params[:imdbID])
+       if watch_list_movie.update(to_watch: false)
+         redirect_to to_watch_path, notice: "Successfully removed movie to watch list"
+       else
          redirect_to root_path, alert: " Not okay"
-      else
-        watch_list_movie = Movie.find_by(imdbID: movie_params[:imdbID])
-        if watch_list_movie.update(to_watch: false)
-          redirect_to to_watch_path, notice: "Successfully removed movie to watch list"
-        else
-          redirect_to root_path, alert: " Not okay"
-        end
-      end
+       end
+     end
   end
 
   def watch_list
