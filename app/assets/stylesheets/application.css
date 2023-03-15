@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+.gif-wrapper {
+    background-image: url(red-roof.gif);
+    text-align: center;
+    line-height: 165vh;
+    height: 70vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
