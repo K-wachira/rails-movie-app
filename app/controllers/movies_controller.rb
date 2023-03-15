@@ -8,21 +8,9 @@ class MoviesController < ApplicationController
 
   def show
     @movie_id = Movie.find_by(id: params["format"])
-    @conn = Faraday.new(
-            url: 'https://www.omdbapi.com/',
-            headers: {'Content-Type' => 'application/json'},)
-
-    @movie_response = @conn.get("/") do |req|
-            req.params = { 'i':  @movie_id[:imdbID] }
-            req.params["apikey"] = Rails.application.credentials.dig(:omdb, :apikey)
-    end
-    @movie_response = JSON.parse(@movie_response.body)
-
-    @response = @conn.get("/") do |req|
-      req.params = { 's': @movie_id[:title].split(":", -1)[0] }
-            req.params["apikey"] = Rails.application.credentials.dig(:omdb, :apikey)
-    end
-    @response2 = JSON.parse(@response.body)
+    api_instance = OmdbApi.new
+    @movie_response = JSON.parse(api_instance.search({ 'i':  @movie_id[:imdbID] }).body)
+    @response2 = JSON.parse(api_instance.search({ 's': @movie_id[:title].split(":", -1)[0] }).body)
   end
 
   def add_watched_movie
