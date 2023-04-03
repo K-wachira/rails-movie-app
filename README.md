@@ -32,7 +32,7 @@ To run the application you need
 
 * Docker and Docker-Compose
 
-* Database - postgresql used (relational database due to the transactional nature of the records)
+* Database - postgresql used (relational database due to the transactional nature of the application)
 
 --- 
 
