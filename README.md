@@ -24,7 +24,6 @@ The application handle adding and removing of records from the database as well 
 
 The application is created using Bootstrap for a basic UI 
 
-u
 ---
 
 To run the application you need
