@@ -28,9 +28,10 @@ The application is created using Bootstrap for a basic UI
 
 To run the application you need
 
-* Ruby version 3.2.1
+* Ruby version [3.2.1](https://www.ruby-lang.org/en/news/2023/02/08/ruby-3-2-1-released/). 
+    Can be installed with [rvm](http://rvm.io/) using `rvm install 3.2.1`
 
-* Docker and Docker-Compose
+* [Docker](https://docs.docker.com/) and [Docker-Compose](https://docs.docker.com/compose/)
 
 * Database - postgresql used (relational database due to the transactional nature of the application)
 
