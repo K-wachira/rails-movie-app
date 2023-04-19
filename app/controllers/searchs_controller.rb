@@ -3,8 +3,7 @@ class SearchsController < ApplicationController
   end
 
   def search
-    api_instance = OmdbApi.new
-    search_results = api_instance.search({ :s => params[:search] })
+    search_results = OmdbApi.new.search({ :s => params[:search] })
     @response = JSON.parse(search_results.body)
   end
 end
