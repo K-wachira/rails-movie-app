@@ -35,6 +35,17 @@ To run the application you need
 
 * Database - postgresql used (relational database due to the transactional nature of the application)
 
+* Keys. 
+    create a .env file in the root folder and paste the following
+
+    ```
+        POSTGRES_HOST=db
+        POSTGRES_DB=movie-app
+        POSTGRES_USER=init
+        POSTGRES_PASSWORD=1234
+        RAILS_MASTER_KEY=0c5f162e3316ea202f0e0fa6ab7fb1df
+        RAILS_ENV=production
+    ```
 --- 
 
 Deployment instructions
