@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post 'sign_in', to: 'sessions#create'
 
   # Movies
-  
+
   # Watched
   post "add_watched", to: "movies#add_watched_movie"
   post "remove_watched", to: "movies#remove_watched_movie"
