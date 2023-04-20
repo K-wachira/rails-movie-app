@@ -36,7 +36,7 @@ To run the application you need
 * Database - postgresql used (relational database due to the transactional nature of the application)
 
 * Keys. 
-    create a .env file in the root folder and paste the following
+    create a .env file in the root dir of the project and add the following
 
     ```
         POSTGRES_HOST=db
@@ -54,3 +54,29 @@ To run the application you have need docker installed and running.
 navigate to the route folder of the applicationa and run the following command
 
 `docker-compose build && docker-compose up`
+
+
+The application can then be accessed on `http://0.0.0.0:3000/` 
+
+
+Note, 
+If you have applications(eg postgresql ) running on port 5432 modify `docker-compose.yml`'s 
+
+```
+    ports:
+      - "5432:5432"
+```
+
+to 
+
+
+```
+    ports:
+      - "5431:5432"
+
+```
+
+or to a port that is not in use
+
+
+Port 3000 should also not be in use
