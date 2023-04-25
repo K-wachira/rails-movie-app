@@ -8,33 +8,36 @@
       </div>
     </div>
     <div class="col-md-8">
-      <div class="card mb-4">
-        <div class="card-body border">
+      <div class="card mb-4 border-0">
+        <div class="card-body border-0">
           <h5 class="card-title"><%= @movie_response["Title"] %></h5>
           <p class="card-text"><%= @movie_response["Plot"] %> </p>
              <% @movie_response["Ratings"].each do | rating | %>
               <% rating.to_h.each do | key, value | %>
-                <span class="badge bg-info text-dark"> <%= key["value"] %><%= value %> </span>
+                <span class="badge bg-info text-white"> <%= key["value"] %><%= value %> </span>
               <% end %>
               <% end %>
-            <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Director:</strong> <%= @movie_response["Director"] %> </li>
-            <li class="list-group-item"><strong>Writer:</strong> <%= @movie_response["Writer"] %> </li>
-            <li class="list-group-item"><strong>Cast:</strong> <%= @movie_response["Actors"] %></li>
-            <li class="list-group-item"><strong>Release Date:</strong> <%= @movie_response["Released"] %></li>
-            <li class="list-group-item"><strong>Language:</strong> <%= @movie_response["Language"] %></li>
-            <li class="list-group-item"><strong>Country:</strong> <%= @movie_response["Country"] %></li>
-            <li class="list-group-item"><strong>Rated:</strong> <%= @movie_response["Rated"] %></li>
-            <li class="list-group-item"><strong>Box Office:</strong> <%= @movie_response["BoxOffice"] %></li>
-            <li class="list-group-item"><strong>Run time:</strong> <%= @movie_response["Runtime"] %></li>
-            <li class="list-group-item"><strong>Awards:</strong> <%= @movie_response["Awards"] %></li>
-            <li class="list-group-item"><strong>Genre:</strong> <%= @movie_response["Genre"] %></li>
-            <li class="list-group-item"><strong>Ratings:</strong> 
-            </li>
+            <ul class="list-group list-group-flush border-0">
+              <li class="list-group-item"><strong>Director:</strong> <%= @movie_response["Director"] %> </li>
+              <li class="list-group-item"><strong>Writer:</strong> <%= @movie_response["Writer"] %> </li>
+              <li class="list-group-item"><strong>Cast:</strong> <%= @movie_response["Actors"] %></li>
+              <li class="list-group-item"><strong>Release Date:</strong> <%= @movie_response["Released"] %></li>
+              <li class="list-group-item"><strong>Language:</strong> <%= @movie_response["Language"] %></li>
+              <li class="list-group-item"><strong>Country:</strong> <%= @movie_response["Country"] %></li>
+              <li class="list-group-item"><strong>Rated:</strong> <%= @movie_response["Rated"] %></li>
+              <li class="list-group-item"><strong>Box Office:</strong> <%= @movie_response["BoxOffice"] %></li>
+              <li class="list-group-item"><strong>Run time:</strong> <%= @movie_response["Runtime"] %></li>
+              <li class="list-group-item"><strong>Awards:</strong> <%= @movie_response["Awards"] %></li>
+              <li class="list-group-item"><strong>Genre:</strong> <%= @movie_response["Genre"] %></li>
+              <li class="list-group-item"><strong>Ratings:</strong> 
+              </li>
           </ul>
         </div>
       </div>
     </div>
+  </div>
+  <div class="container">
+    <%= render "comment", movie: @movie_response %>
   </div>
   <div class="container mt-5">
     <h1 class="align-center mt-5">Similar Movies to : <%= @movie_response["Title"] %> </h1>

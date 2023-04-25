@@ -39,4 +39,10 @@ Rails.application.routes.draw do
   # Search
   get 'search', to: 'searchs#search'
   get "show_movie", to: "movies#show" 
+
+  # Comments
+  get 'get_comments', to: 'comments#get_comment'
+  get 'add_comments', to: 'comments#add_comment'
+  post 'add_comments', to: 'comments#add_comment'
+
 end

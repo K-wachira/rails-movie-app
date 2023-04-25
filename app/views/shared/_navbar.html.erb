@@ -23,6 +23,7 @@
       <form class="d-flex  mx-auto my-2">
         <%= form_with(url: search_path, method: 'get') do %>
           <div class="form-group">
+            <%= hidden_field_tag :page, 0 %>
             <%= text_field_tag :search, nil, placeholder: 'Eg. star wars', class: 'form-control me-2' %>
           </div>
           <%= button_tag 'Search', class: 'btn btn-outline-success' %>
