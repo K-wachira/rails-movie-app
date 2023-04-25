@@ -80,3 +80,10 @@ or to a port that is not in use
 
 
 Port 3000 should also not be in use on your local machine
+
+
+## Additional Features that would improve the application.
+
+- Cache data locally or on the db to avoid hitting the API with dublicate queries over time. 
+- Imlement advanced filtering search queries
+- 
