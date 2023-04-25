@@ -79,4 +79,4 @@ to
 or to a port that is not in use
 
 
-Port 3000 should also not be in use
+Port 3000 should also not be in use on your local machine
