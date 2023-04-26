@@ -6,7 +6,8 @@ Users also can create acounts and log back in to interact with previously saved 
 
 The following infomation is saved with (CRUD)
 
-* User name 
+* User first name 
+* User last name
 * User email 
 * Password Digest 
 
@@ -18,11 +19,34 @@ The following infomation is saved with (CRUD)
 * If movie is watched, liked or added to watch list 
 * Record creation, and upsert dates
 
+--- 
+* Comment ID
+* Comment text
+* Likes
+* Disklikes
+* Comment has spoilers
+* Uerr ID
+* Movie ID
 
 --- 
-The application handle adding and removing of records from the database as well as authenticating users. 
+The Users can. 
 
-The application is created using Bootstrap for a basic UI 
+* Create accounts
+* Login to previous accounts
+* Search for Movies/Tv shows and Episodes
+* Filter By Yeay of release 
+* Filter by type (Movie, TV, epidodes
+* Like Movies
+* Mark as Watched
+* Mark as Favorite
+* Add to Watch List
+
+* Comment on Movie
+* Get recommendation of similar movies
+
+--- 
+
+The application is created using Bootstrap for a basic UI, and Ruby on Rails
 
 ---
 
@@ -48,7 +72,7 @@ To run the application you need
     ```
 --- 
 
-Deployment instructions
+Running the application with docker.
 
 To run the application you have need docker installed and running. 
 navigate to the route folder of the applicationa and run the following command
@@ -85,5 +109,5 @@ Port 3000 should also not be in use on your local machine
 ## Additional Features that would improve the application.
 
 - Cache data locally or on the db to avoid hitting the API with dublicate queries over time. 
-- Imlement advanced filtering search queries
+- 
 - 
